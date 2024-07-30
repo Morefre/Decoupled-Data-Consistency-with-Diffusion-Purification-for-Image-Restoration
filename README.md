@@ -80,7 +80,7 @@ python dcdp.py --task_config=./task_configurations/gaussian_deblur_config.yaml -
 ```
 
 ```
-# Super resolution
+# Super-resolution
 python dcdp.py --task_config=./task_configurations/super_resolution_config.yaml --purification_config=./purification_configurations/purification_config_super_resolution.yaml \
                  --model_config=./model_configurations/model_config_ffhq.yaml 
 ```

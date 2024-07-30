@@ -90,7 +90,7 @@ python dcdp.py --task_config=./task_configurations/super_resolution_config.yaml 
 
 * Code for latent space diffusion model and consistency model will be uploaded soon.
 
-* Our paper will be presented a the [IMSI Computational Imaging Workshop 2024](https://www.imsi.institute/activities/computational-imaging/).
+* Our paper will be presented at the [IMSI Computational Imaging Workshop 2024](https://www.imsi.institute/activities/computational-imaging/).
 
 ## References
   * Our implementation is based on [DPS](https://github.com/DPS2022/diffusion-posterior-sampling.git).

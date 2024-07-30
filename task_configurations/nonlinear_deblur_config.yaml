@@ -1,0 +1,13 @@
+conditioning:
+  method: ps
+  params:
+    scale: 0.3
+
+measurement:
+  operator:
+    name: nonlinear_blur
+    opt_yml_path: ./bkse/options/generate_blur/default.yml
+
+  noise: 
+    name: gaussian
+    sigma: 0.05

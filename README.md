@@ -93,8 +93,8 @@ python dcdp.py --task_config=./task_configurations/super_resolution_config.yaml 
 * Our paper will be presented a the [IMSI Computational Imaging Workshop 2024]
 
 ## Reference
-  * The implementation is based on [DPS](https://github.com/DPS2022/diffusion-posterior-sampling.git)
-  * We use the pretrained diffusion models developed by [DPS](https://github.com/DPS2022/diffusion-posterior-sampling.git))
+  * Our implementation is based on [DPS](https://github.com/DPS2022/diffusion-posterior-sampling.git)
+  * We use the pretrained diffusion models developed by [Guided Diffusion](https://github.com/DPS2022/diffusion-posterior-sampling.git)
 
 ##  Contact
 

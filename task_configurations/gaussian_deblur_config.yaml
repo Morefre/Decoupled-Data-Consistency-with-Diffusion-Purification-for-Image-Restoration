@@ -1,0 +1,14 @@
+conditioning:
+  method: ps
+  params:
+    scale: 0.3
+
+measurement:
+  operator:
+    name: gaussian_blur
+    kernel_size: 61
+    intensity: 3.0
+  
+  noise: 
+    name: gaussian
+    sigma: 0

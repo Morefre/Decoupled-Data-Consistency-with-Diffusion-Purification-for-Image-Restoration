@@ -401,7 +401,7 @@ def main():
       PSNR_list = []
       SSIM_list = []
       LPIPS_list = []
-      # Here we calculate the standard metrics on every intermediate reconstrucitons, which is time-costly. Comment the lines below to if you want to evaluate the images at a faster speed.
+      # Here we calculate the standard metrics on every intermediate reconstrucitons, which is time-costly. Comment the lines below if you want to reconstruct the images at a faster speed.
       for j in range(len(x_list_complete)):
         x = x_list_complete[j]
         recon = x.detach().cpu()

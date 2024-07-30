@@ -1,4 +1,4 @@
-# Decoupled-Data-Consistency-with-Diffusion-Purification-for-Image-Restoration
+# Decoupled Data Consistency with Diffusion Purification for Image Restoration (DCDP)
 
 ![Teaser Image](./docs/DPUR_algorithm.jpg)
 

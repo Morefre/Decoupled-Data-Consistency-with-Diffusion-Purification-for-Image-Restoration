@@ -50,13 +50,13 @@ For the setup of LSUN-Bedroom and ImageNet dataset, please refer to this [reposi
 ### 5) Inference
 
 ```
-Nonlinear deblur
+# Nonlinear deblur
 python dcdp.py --task_config=./task_configurations/nonlinear_deblur_config.yaml --purification_config=./purification_configurations/purification_config_nonlinear_deblur.yaml \
                  --model_config=./model_configurations/model_config_ffhq.yaml 
 ```
 
 ```
-Phase Retrieval
+# Phase Retrieval
 python dcdp.py --task_config=./task_configurations/phase_retrieval_config.yaml --purification_config=./purification_configurations/purification_config_phase_retrieval.yaml \
                  --model_config=./model_configurations/model_config_ffhq.yaml 
 ```

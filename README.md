@@ -63,7 +63,7 @@ python dcdp.py --task_config=./task_configurations/phase_retrieval_config.yaml -
 
 ```
 # Inpainting
-python dcdp.py --task_config=./task_configurations/inpainting_config.yaml --purification_config=./configs/purification_config_inpainting.yaml \
+python dcdp.py --task_config=./task_configurations/inpainting_config.yaml --purification_config=./purification_configurations/purification_config_inpainting.yaml \
                  --model_config=./model_configurations/model_config_ffhq.yaml 
 ```
 

@@ -1,6 +1,6 @@
 purification:
   total_num_iterations: 10
-  csgm_num_iterations: 10
+  csgm_num_iterations: 100
   purification_schedule: linear
   save_every_main: 100000
   save_every_sub: 100000

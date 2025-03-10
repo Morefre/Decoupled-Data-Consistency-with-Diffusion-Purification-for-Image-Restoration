@@ -31,7 +31,7 @@ pip install torch==1.11.0+cu113 torchvision==0.12.0+cu113 torchaudio==0.11.0 --e
 We need to download the following code to implement the forward operator for motion-blurring and nonlinear-blurring
 
 ```
-git clone https://github.com/VinAIResearch/blur-kernel-space-exploring bkse
+git clone https://github.com/VinAIResearch/blur-kernel-space-exploring bkse (we already prepare this for you with necessary changes to the code for running with no error, please do not download again.)
 
 git clone https://github.com/LeviBorodenko/motionblur motionblur
 ```

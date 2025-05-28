@@ -53,6 +53,8 @@ For the setup of LSUN-Bedroom and ImageNet dataset, please refer to this [reposi
 
 ### 5) Inference
 
+By default, the following code will run dcdp where the diffusion purification is performed with 20 DDIM steps. A much faster inference speed can be achieved by change the 'full_ddim' argument in the 'purification_configurations' to False.
+
 ```
 # Nonlinear deblur
 python dcdp.py --task_config=./task_configurations/nonlinear_deblur_config.yaml --purification_config=./purification_configurations/purification_config_nonlinear_deblur.yaml \

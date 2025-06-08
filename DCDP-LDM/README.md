@@ -81,7 +81,7 @@ python dcdp_imagenet.py --full_ddim=False --total_num_iterations=20 --csgm_num_i
                --task_config=configs/tasks/nonlinear_deblur_ImageNet_config.yaml --save_dir='./purification_results_imagenet'
 ```
 
-Please refer to [`run_latent_space_dcdp.sh`](https://github.com/Morefre/Decoupled-Data-Consistency-with-Diffusion-Purification-for-Image-Restoration/blob/main/DCDP-LDM/run_latent_sapce_dcdp.sh) for inference code for other tasks.
+Please refer to [`run_latent_space_dcdp.sh`](https://github.com/Morefre/Decoupled-Data-Consistency-with-Diffusion-Purification-for-Image-Restoration/blob/main/DCDP-LDM/run_latent_sapce_dcdp.sh) for inference code of other tasks.
 
 <br />
 

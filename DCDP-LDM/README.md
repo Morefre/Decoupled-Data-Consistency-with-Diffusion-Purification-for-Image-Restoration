@@ -1,25 +1,9 @@
-# Solving Inverse Problems with Latent Diffusion Models via Hard Data Consistency (ICLR 2024)
+# DCDP: Decoupled Data Consistency via Diffusion Purification for Solving General Inverse Problems (LDM Version)
 
-![example](https://github.com/soominkwon/resample/blob/main/figures/resample_ex.png)
 
-## Abstract
+### 1) Download pretrained checkpoints (autoencoders and model)
 
-In this work, we propose ReSample, an algorithm that can solve general inverse problems with pre-trained latent diffusion models. Our algorithm incorporates data consistency by solving an optimization problem during the reverse sampling process, a concept that we term as hard data consistency. Upon solving this optimization problem, we propose a novel resampling scheme to map the measurement-consistent sample back onto the noisy data manifold.
-
-## Getting Started
-
-### 1) Clone the repository
-
-```
-git clone https://github.com/soominkwon/resample.git
-
-cd resample
-```
-
-<br />
-
-### 2) Download pretrained checkpoints (autoencoders and model)
-
+FFHQ:
 ```
 mkdir -p models/ldm
 wget https://ommer-lab.com/files/latent-diffusion/ffhq.zip -P ./models/ldm
@@ -30,6 +14,12 @@ wget https://ommer-lab.com/files/latent-diffusion/vq-f4.zip -P ./models/first_st
 unzip models/first_stage_models/vq-f4/vq-f4.zip -d ./models/first_stage_models/vq-f4
 ```
 
+ImageNet:
+```
+wget https://ommer-lab.com/files/latent-diffusion/nitro/cin/model.ckpt -P ./checkpoints/
+mv checkpoints/model.ckpt models/ldm_imagenet/model.ckpt
+```
+
 <br />
 
 ### 3) Set environment
@@ -37,63 +27,73 @@ unzip models/first_stage_models/vq-f4/vq-f4.zip -d ./models/first_stage_models/v
 We use the external codes for motion-blurring and non-linear deblurring following the DPS codebase.
 
 ```
-git clone https://github.com/VinAIResearch/blur-kernel-space-exploring bkse
+git clone https://github.com/VinAIResearch/blur-kernel-space-exploring bkse (we already prepare this for you with necessary changes to the code for running with no error, please do not download again.)
 
 git clone https://github.com/LeviBorodenko/motionblur motionblur
 ```
+For nonlinear-blurring, we need to download the "GOPRO_wVAE.pth" file from [here](https://drive.google.com/file/d/1vRoDpIsrTRYZKsOMPNbPcMtFDpCT6Foy/view) and paste it to ./bkse/experiments/pretrained/
+
 
 Install dependencies via
 
 ```
 conda env create -f environment.yaml
+
+pip install torchmetrics[image]
 ```
+
+Follow additional instruction [here](https://github.com/CompVis/stable-diffusion/issues/72) to fix a bug in the LDM code.
 
 <br />
 
 ### 4) Inference
 
 ```
-python3 sample_condition.py
+Gaussian deblur on FFHQ
+
+#  Option 1: perform diffusion purification with 20 steps DDIM
+
+python dcdp.py --full_ddim=True --total_num_iterations=4 --csgm_num_iterations=250 --ddim_init_timestep=400 --ddim_end_timestep=0 \
+               --save_every_main=1 --save_every_sub=100000 --optimizer=SGD --lr=100000 --data_consistency_type=pixel --verbose=True --momentum=0.9 \
+               --task_config=configs/tasks/gaussian_deblur_config.yaml
+
+#  Option 2: perform diffusion purification with 1-step Tweedie's formula. This is much faster
+
+python dcdp.py --full_ddim=False --total_num_iterations=4 --csgm_num_iterations=250 --ddim_init_timestep=400 --ddim_end_timestep=0 \
+               --save_every_main=1 --save_every_sub=1000000 --optimizer=SGD --lr=100000 --data_consistency_type=pixel --verbose=True --momentum=0.9 \
+                --task_config=configs/tasks/gaussian_deblur_config.yaml
 ```
 
-The code is currently configured to do inference on FFHQ. You can download the corresponding models from https://github.com/CompVis/latent-diffusion/tree/main and modify the checkpoint paths for other datasets and models.
-
-
-<br />
-
-## Task Configurations
 
 ```
-# Linear inverse problems
-- configs/tasks/super_resolution_config.yaml
-- configs/tasks/gaussian_deblur_config.yaml
-- configs/tasks/motion_deblur_config.yaml
-- configs/tasks/inpainting_config.yaml
+Nonlinear deblur on ImageNet
 
-# Non-linear inverse problems
-- configs/tasks/nonlinear_deblur_config.yaml
+#  Option 1: perform diffusion purification with 20 steps DDIM
+
+python dcdp_imagenet.py --full_ddim=True --total_num_iterations=20 --csgm_num_iterations=100 --ddim_init_timestep=300 --ddim_end_timestep=50 \
+               --save_every_main=1 --save_every_sub=1000000 --optimizer=SGD --lr=5000 --data_consistency_type=latent --verbose=True --momentum=0.9 \
+               --task_config=configs/tasks/nonlinear_deblur_ImageNet_config.yaml --save_dir='./purification_results_imagenet'
+
+#  Option 2: perform diffusion purification with 1-step Tweedie's formula. This is much faster
+
+python dcdp_imagenet.py --full_ddim=False --total_num_iterations=20 --csgm_num_iterations=100 --ddim_init_timestep=300 --ddim_end_timestep=50 \
+               --save_every_main=1 --save_every_sub=1000000 --optimizer=SGD --lr=5000 --data_consistency_type=latent --verbose=True --momentum=0.9 \
+               --task_config=configs/tasks/nonlinear_deblur_ImageNet_config.yaml --save_dir='./purification_results_imagenet'
 ```
 
-<br />
-
-## Hyperparameter Tuning
-
-For the best results, please refer to the hyperparameters reported in the paper. Recall that we use two types of optimizations for hard data consistency: latent space and pixel space optimization. For the fastest inference, one can use just pixel space optimization, but with a degradation in performance. One can change the splits of pixel space and latent space optimization by tuning the index split value in the main DDIM code. We suggest to use both as reported in the main paper. 
+Please refer to [`run_latent_space_dcdp.sh`](https://github.com/Morefre/Decoupled-Data-Consistency-with-Diffusion-Purification-for-Image-Restoration/blob/main/DCDP-LDM/run_latent_sapce_dcdp.sh) for inference code for other tasks.
 
 <br />
-
 
 ## Citation
 If you find our work interesting, please consider citing
 
 ```
-@inproceedings{
-song2024solving,
-title={Solving Inverse Problems with Latent Diffusion Models via Hard Data Consistency},
-author={Bowen Song and Soo Min Kwon and Zecheng Zhang and Xinyu Hu and Qing Qu and Liyue Shen},
-booktitle={The Twelfth International Conference on Learning Representations},
-year={2024},
-url={https://openreview.net/forum?id=j8hdRqOUhN}
+@article{li2024decoupled,
+  title={Decoupled data consistency with diffusion purification for image restoration},
+  author={Li, Xiang and Kwon, Soo Min and Alkhouri, Ismail R and Ravishankar, Saiprasad and Qu, Qing},
+  journal={arXiv preprint arXiv:2403.06054},
+  year={2024}
 }
 ```
 

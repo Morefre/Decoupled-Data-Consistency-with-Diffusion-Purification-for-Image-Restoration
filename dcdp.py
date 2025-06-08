@@ -455,6 +455,13 @@ def main():
   avg_LPIPS_list = np.mean(LPIPS_list_All, axis=0)
   std_LPIPS_list = np.mean(LPIPS_list_All, axis=0)
 
+  print('When the measurement has additional noise, the purification in the last iteration can improve the final reconstruction quality. Otherwise, applying purification in the last iteration can degrade reconstruction quality.')
+
+  print('Final Metrics before Purification:')
+  print('Final average PSNR: ',avg_PSNR_list[-2],'Final average SSIM: ', avg_SSIM_list[-2],'Final average LPIPS: ',avg_LPIPS_list[-2])
+  print('Final std PSNR: ',std_PSNR_list[-2],'Final std SSIM: ', std_SSIM_list[-2],'Final std LPIPS: ',std_LPIPS_list[-2])
+
+  print('Final Metrics after Purification:')
   print('Final average PSNR: ',avg_PSNR_list[-1],'Final average SSIM: ', avg_SSIM_list[-1],'Final average LPIPS: ',avg_LPIPS_list[-1])
   print('Final std PSNR: ',std_PSNR_list[-1],'Final std SSIM: ', std_SSIM_list[-1],'Final std LPIPS: ',std_LPIPS_list[-1])
 

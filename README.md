@@ -92,11 +92,8 @@ python dcdp.py --task_config=./task_configurations/super_resolution_config.yaml 
 ```
 
 ### 6) Updates
-* In our original paper we only perform experiments on linear image restoration problem. However, the dcdp algorithm achieves state of the art performance on nonlinear deblur and phase retrieval as well. For 100 FFHQ images, dcdp achieves an average PSNR of 29.19. For phase retrieval it achieves an average PSNR of 28.45. Additional experiment results will appear in our revised paper soon.
 
-* Code for latent space diffusion model and consistency model will be uploaded soon.
-
-* Our paper will be presented at the [IMSI Computational Imaging Workshop 2024](https://www.imsi.institute/activities/computational-imaging/).
+* Our paper was presented at the [IMSI Computational Imaging Workshop 2024](https://www.imsi.institute/activities/computational-imaging/).
 
 ## References
   * Our implementation is based on [DPS](https://github.com/DPS2022/diffusion-posterior-sampling.git).

@@ -94,12 +94,13 @@ python dcdp.py --task_config=./task_configurations/super_resolution_config.yaml 
 ### 6) DCDP-LDM
 
 Please see [here](https://github.com/Morefre/Decoupled-Data-Consistency-with-Diffusion-Purification-for-Image-Restoration/tree/main/DCDP-LDM) for the implementation of DCDP with latent diffusion models (LDM).
-### 6) Updates
+
+### 7) Updates
 
 * Our paper was presented at the [IMSI Computational Imaging Workshop 2024](https://www.imsi.institute/activities/computational-imaging/).
 
 ## References
-  * Our implementation is based on [DPS](https://github.com/DPS2022/diffusion-posterior-sampling.git).
+  * Our implementation is based on [DPS](https://github.com/DPS2022/diffusion-posterior-sampling.git) and [Resample](https://github.com/soominkwon/resample).
   * We use the pretrained diffusion models developed by [Guided Diffusion](https://github.com/DPS2022/diffusion-posterior-sampling.git).
 
 ## Citation

@@ -39,6 +39,8 @@ Install dependencies via
 ```
 conda env create -f environment.yaml
 
+pip install torchmetrics
+
 pip install torchmetrics[image]
 ```
 

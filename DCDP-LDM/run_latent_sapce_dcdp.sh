@@ -1,5 +1,7 @@
 '''
-Run the code below to replicate the quantitative results presented in the paper
+Run the code below to replicate the quantitative results presented in the paper.
+
+Note that the hyperparameters are finetuned for FFHQ dataset, which might not be optimal for ImageNet.
 '''
 
 

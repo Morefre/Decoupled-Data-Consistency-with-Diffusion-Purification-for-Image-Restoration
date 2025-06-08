@@ -91,6 +91,9 @@ python dcdp.py --task_config=./task_configurations/super_resolution_config.yaml 
                  --model_config=./model_configurations/model_config_ffhq.yaml 
 ```
 
+### 6) DCDP-LDM
+
+Please see [here](https://github.com/Morefre/Decoupled-Data-Consistency-with-Diffusion-Purification-for-Image-Restoration/tree/main/DCDP-LDM) for the implementation of DCDP with latent diffusion models (LDM).
 ### 6) Updates
 
 * Our paper was presented at the [IMSI Computational Imaging Workshop 2024](https://www.imsi.institute/activities/computational-imaging/).

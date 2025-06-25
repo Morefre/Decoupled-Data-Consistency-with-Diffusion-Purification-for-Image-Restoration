@@ -93,7 +93,7 @@ If you find our work interesting, please consider citing
 ```
 @article{li2024decoupled,
   title={Decoupled data consistency with diffusion purification for image restoration},
-  author={Li, Xiang and Kwon, Soo Min and Alkhouri, Ismail R and Ravishankar, Saiprasad and Qu, Qing},
+  author={Li, Xiang and Kwon, Soo Min and Liang, Shijun and Alkhouri, Ismail R and Ravishankar, Saiprasad and Qu, Qing},
   journal={arXiv preprint arXiv:2403.06054},
   year={2024}
 }

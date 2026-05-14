@@ -494,7 +494,7 @@ if __name__ == '__main__':
 
    std_PSNR_list = np.std(PSNR_list_All, axis=0)
    std_SSIM_list = np.std(SSIM_list_All, axis=0)
-   std_LPIPS_list = np.mean(LPIPS_list_All, axis=0)
+   std_LPIPS_list = np.std(LPIPS_list_All, axis=0)
    
    print('When the measurement has additional noise, the purification in the last iteration can improve the final reconstruction quality. Otherwise, applying purification in the last iteration can degrade reconstruction quality.')
 
